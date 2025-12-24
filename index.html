@@ -1,385 +1,204 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Northside Cuts — Barber Studio</title>
-  <meta name="description" content="Modern barbershop demo site: services, pricing, hours, location, gallery, and booking." />
-  <style>
-    :root{
-      --bg:#0b0c10; --card:#111218; --text:#f5f7ff; --muted:#b7bdd6;
-      --line:rgba(255,255,255,.10); --shadow: 0 18px 40px rgba(0,0,0,.35);
-      --radius:18px; --radius2:28px; --max:1080px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--text); background:
-        radial-gradient(900px 500px at 20% -10%, rgba(255,255,255,.10), transparent 55%),
-        radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,.06), transparent 55%),
-        var(--bg);
-      line-height:1.5;
-    }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:20px}
-    .nav{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(10px);
-      background: rgba(11,12,16,.65);
-      border-bottom:1px solid var(--line);
-    }
-    .nav .inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 20px; max-width:var(--max); margin:0 auto;}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.4px}
-    .logo{
-      width:34px; height:34px; border-radius:12px;
-      background: linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
-      border:1px solid var(--line);
-      display:grid; place-items:center;
-      box-shadow: var(--shadow);
-    }
-    .navlinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
-    .navlinks a{color:var(--muted); font-weight:600; font-size:14px; padding:8px 10px; border-radius:12px}
-    .navlinks a:hover{background:rgba(255,255,255,.06); color:var(--text)}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 16px; border-radius:14px; border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      font-weight:800;
-    }
-    .btn:hover{background:rgba(255,255,255,.10)}
-    .btn.primary{
-      background:linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
-      box-shadow: var(--shadow);
-    }
-    .hero{padding:42px 20px 10px}
-    .heroGrid{display:grid; grid-template-columns: 1.05fr .95fr; gap:18px; align-items:stretch}
-    @media (max-width: 900px){.heroGrid{grid-template-columns:1fr}}
-    .card{
-      background: rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-    }
-    .pad{padding:22px}
-    h1{margin:0 0 10px; font-size:46px; letter-spacing:-.6px; line-height:1.08}
-    @media (max-width: 520px){h1{font-size:38px}}
-    .sub{color:var(--muted); font-size:16px; margin:0 0 18px}
-    .chips{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 6px}
-    .chip{
-      padding:8px 10px; border-radius:999px; border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      color:var(--muted); font-weight:700; font-size:13px;
-    }
-    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
-    .ctaRow .btn{flex:0 0 auto}
-    .note{font-size:12px; color:var(--muted); margin-top:12px}
-    .photo{
-      border-radius: var(--radius2);
-      overflow:hidden;
-      min-height: 340px;
-      position:relative;
-      background:
-        radial-gradient(900px 500px at 30% 20%, rgba(255,255,255,.16), transparent 60%),
-        linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-    }
-    .photo::after{
-      content:"DEMO PHOTO AREA";
-      position:absolute; inset:auto 18px 18px 18px;
-      padding:10px 12px; border-radius:14px;
-      border:1px dashed rgba(255,255,255,.18);
-      color: rgba(255,255,255,.55);
-      font-weight:900; letter-spacing:.6px; font-size:12px;
-      background: rgba(0,0,0,.18);
-    }
-    .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px}
-    @media (max-width: 520px){.stats{grid-template-columns:1fr}}
-    .stat{
-      padding:14px; border-radius: var(--radius);
-      border:1px solid var(--line); background: rgba(255,255,255,.04);
-    }
-    .stat b{display:block; font-size:18px}
-    .stat span{color:var(--muted); font-weight:700; font-size:12px}
-    section{padding:18px 20px}
-    .sectionTitle{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:10px}
-    h2{margin:0; font-size:22px; letter-spacing:-.2px}
-    .small{color:var(--muted); font-size:13px; font-weight:700}
-    .grid3{display:grid; grid-template-columns: repeat(3,1fr); gap:12px}
-    @media (max-width: 900px){.grid3{grid-template-columns:1fr}}
-    .service{padding:16px; border-radius: var(--radius); border:1px solid var(--line); background: rgba(255,255,255,.04)}
-    .service .top{display:flex; justify-content:space-between; align-items:center; gap:10px}
-    .service .price{font-weight:900}
-    .service p{margin:8px 0 0; color:var(--muted); font-weight:600; font-size:13px}
-    .twoCol{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
-    @media (max-width: 900px){.twoCol{grid-template-columns:1fr}}
-    .list{margin:10px 0 0; padding:0; list-style:none}
-    .list li{padding:10px 0; border-top:1px solid var(--line); color:var(--muted); font-weight:700}
-    .list li:first-child{border-top:none}
-    .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
-    @media (max-width: 900px){.gallery{grid-template-columns:1fr 1fr}}
-    @media (max-width: 520px){.gallery{grid-template-columns:1fr}}
-    .tile{
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      background:
-        radial-gradient(700px 400px at 30% 20%, rgba(255,255,255,.12), transparent 60%),
-        rgba(255,255,255,.03);
-      min-height: 140px;
-      position:relative;
-      overflow:hidden;
-    }
-    .tile span{
-      position:absolute; left:12px; bottom:12px;
-      color: rgba(255,255,255,.60);
-      font-weight:900; font-size:12px; letter-spacing:.4px;
-      background: rgba(0,0,0,.20);
-      border:1px solid rgba(255,255,255,.10);
-      padding:6px 8px; border-radius: 12px;
-    }
-    .contactGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
-    @media (max-width: 900px){.contactGrid{grid-template-columns:1fr}}
-    .field{display:flex; flex-direction:column; gap:6px; margin-top:10px}
-    label{font-size:12px; color:var(--muted); font-weight:800}
-    input, textarea{
-      background: rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      border-radius: 14px;
-      color:var(--text);
-      padding:12px 12px;
-      font: inherit;
-      outline:none;
-    }
-    textarea{min-height:110px; resize:vertical}
-    .footer{padding:28px 20px; color:var(--muted); font-weight:700; font-size:13px}
-    .pillRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
-    .pill{padding:10px 12px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.04)}
-    .warning{color:rgba(255,255,255,.72); font-weight:800}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Description" content="Modern barbershop demo site: services, pricing, hours, location, gallery, and booking.">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    body {background-color: #0b0b0e}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px '.Apple Color Emoji UI'; color: #f2f5ff; -webkit-text-stroke: #f2f5ff; background-color: #0b0b0e; background-color: rgba(11, 11, 14, 0.65)}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px '.Apple Color Emoji UI'; color: #f2f5ff; -webkit-text-stroke: #f2f5ff; background-color: #0b0b0e; background-color: rgba(11, 11, 14, 0.65); min-height: 15.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #a8aecc; -webkit-text-stroke: #a8aecc; min-height: 16.0px}
+    span.s1 {font-kerning: none}
   </style>
 </head>
-
 <body>
-  <div class="nav">
-    <div class="inner">
-      <div class="brand">
-        <div class="logo">✂️</div>
-        <div>
-          <div>Northside Cuts</div>
-          <div class="small">Barber Studio</div>
-        </div>
-      </div>
-
-      <div class="navlinks">
-        <a href="#services">Services</a>
-        <a href="#hours">Hours</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-        <a class="btn primary" href="#contact">Book</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap hero">
-    <div class="heroGrid">
-      <div class="card pad">
-        <h1>Clean fades.<br/>Sharp lineups.<br/>No wasted time.</h1>
-        <p class="sub">
-          Demo barbershop website — built to show clients your brand, pricing, photos, and an easy way to book.
-        </p>
-
-        <div class="chips">
-          <div class="chip">Same-day appointments</div>
-          <div class="chip">Walk-ins welcome</div>
-          <div class="chip">Text to book</div>
-          <div class="chip">5★ local service</div>
-        </div>
-
-        <div class="ctaRow">
-          <a class="btn primary" href="#contact">Book an appointment</a>
-          <a class="btn" href="#services">View services</a>
-        </div>
-
-        <div class="stats">
-          <div class="stat"><b>10–15 min</b><span>Typical wait time</span></div>
-          <div class="stat"><b>4.9 ★</b><span>Average rating</span></div>
-          <div class="stat"><b>Since 2017</b><span>Serving the city</span></div>
-        </div>
-
-        <p class="note">
-          <span class="warning">Demo note:</span> Replace the business name, prices, photos, address, and booking link before sending.
-        </p>
-      </div>
-
-      <div class="card photo" aria-label="Demo hero image placeholder"></div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <section id="services">
-      <div class="sectionTitle">
-        <h2>Services & Pricing</h2>
-        <div class="small">Simple menu • clear pricing • easy upsells</div>
-      </div>
-
-      <div class="grid3">
-        <div class="service">
-          <div class="top"><b>Fade + Lineup</b><div class="price">$35</div></div>
-          <p>Skin / mid / low fade. Crisp lineup. Finished with hot towel.</p>
-        </div>
-        <div class="service">
-          <div class="top"><b>Classic Cut</b><div class="price">$30</div></div>
-          <p>Scissor + clipper blend. Natural finish. Great for professionals.</p>
-        </div>
-        <div class="service">
-          <div class="top"><b>Cut + Beard</b><div class="price">$45</div></div>
-          <p>Full cut plus beard shape-up, detailing, and optional hot towel.</p>
-        </div>
-        <div class="service">
-          <div class="top"><b>Kids Cut (12 & under)</b><div class="price">$25</div></div>
-          <p>Patient, clean, and quick. Bring a reference photo if you want.</p>
-        </div>
-        <div class="service">
-          <div class="top"><b>Beard Shape-Up</b><div class="price">$20</div></div>
-          <p>Lineup + trim + balm finish. Adds a sharp look fast.</p>
-        </div>
-        <div class="service">
-          <div class="top"><b>House Call</b><div class="price">$80+</div></div>
-          <p>Travel fee depends on distance. Great for groups or events.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="hours">
-      <div class="twoCol">
-        <div class="card pad">
-          <div class="sectionTitle">
-            <h2>Hours</h2>
-            <div class="small">Example schedule</div>
-          </div>
-          <ul class="list">
-            <li>Mon–Thu: 10:00 AM – 7:00 PM</li>
-            <li>Fri: 10:00 AM – 8:00 PM</li>
-            <li>Sat: 9:00 AM – 6:00 PM</li>
-            <li>Sun: Closed</li>
-          </ul>
-          <div class="pillRow">
-            <div class="pill">Walk-ins: ✅</div>
-            <div class="pill">Appointments: ✅</div>
-            <div class="pill">Cash / Card: ✅</div>
-          </div>
-        </div>
-
-        <div class="card pad">
-          <div class="sectionTitle">
-            <h2>Location</h2>
-            <div class="small">Replace with real address</div>
-          </div>
-          <p class="sub" style="margin-top:8px">
-            123 Main Street, Suite B<br/>
-            Your City, ST 00000
-          </p>
-          <div class="pillRow">
-            <a class="btn" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Maps</a>
-            <a class="btn" href="tel:+15551234567">Call (555) 123-4567</a>
-          </div>
-          <p class="note">Tip: a good website + Google Business profile = more bookings.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery">
-      <div class="sectionTitle">
-        <h2>Gallery</h2>
-        <div class="small">Swap these tiles with real haircut photos</div>
-      </div>
-      <div class="gallery">
-        <div class="tile"><span>Fade</span></div>
-        <div class="tile"><span>Lineup</span></div>
-        <div class="tile"><span>Beard</span></div>
-        <div class="tile"><span>Texture</span></div>
-        <div class="tile"><span>Kids</span></div>
-        <div class="tile"><span>Before/After</span></div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="contactGrid">
-        <div class="card pad">
-          <div class="sectionTitle">
-            <h2>Book / Contact</h2>
-            <div class="small">Fast booking = more revenue</div>
-          </div>
-
-          <p class="sub" style="margin-top:8px">
-            Want this exact site built for your shop? Tap below to book or send a message.
-          </p>
-
-          <div class="pillRow">
-            <!-- Replace with real booking link (Booksy, Square, Calendly, etc.) -->
-            <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noopener">Book Now</a>
-            <a class="btn" href="sms:+15551234567">Text Us</a>
-            <a class="btn" href="mailto:book@northsidecuts.demo">Email</a>
-          </div>
-
-          <p class="note">
-            Demo booking button goes to Calendly. Replace with Booksy/Square link if the barber uses one.
-          </p>
-        </div>
-
-        <div class="card pad">
-          <div class="sectionTitle">
-            <h2>Quick Message</h2>
-            <div class="small">Demo form (no backend)</div>
-          </div>
-
-          <form onsubmit="return handleSubmit(event)">
-            <div class="field">
-              <label for="name">Name</label>
-              <input id="name" name="name" placeholder="Your name" required />
-            </div>
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" placeholder="(555) 123-4567" />
-            </div>
-            <div class="field">
-              <label for="msg">Message</label>
-              <textarea id="msg" name="msg" placeholder="What service do you want? Preferred day/time?"></textarea>
-            </div>
-            <div class="ctaRow" style="margin-top:14px">
-              <button class="btn primary" type="submit">Send Message</button>
-              <a class="btn" href="#services">View Pricing</a>
-            </div>
-          </form>
-
-          <p class="note" id="formNote">This demo form opens your email app. No data is stored.</p>
-        </div>
-      </div>
-    </section>
-
-    <div class="footer">
-      © <span id="yr"></span> Northside Cuts — Demo website. Built for marketing examples.
-    </div>
-  </div>
-
-  <script>
-    document.getElementById("yr").textContent = new Date().getFullYear();
-
-    function handleSubmit(e){
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const msg = document.getElementById("msg").value.trim();
-
-      const subject = encodeURIComponent("Booking Request — Northside Cuts");
-      const body = encodeURIComponent(
-        `Name: ${name}\nPhone: ${phone}\n\nMessage:\n${msg}\n\n(Submitted from demo website)`
-      );
-
-      // Replace with the barber's real email:
-      const to = "book@northsidecuts.demo";
-
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      document.getElementById("formNote").textContent = "Opening your email app…";
-      return false;
-    }
-  </script>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Northside Cuts | Barber Shop&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="Modern barbershop demo website with online booking, services, and gallery." /&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: Arial, Helvetica, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #0e0e0e;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #ffffff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>a {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: inherit;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-decoration: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>header {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-image: linear-gradient(</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>rgba(0,0,0,0.6),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>rgba(0,0,0,0.6)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>url("https://images.unsplash.com/photo-1599351431614-18ef1fdd27e1?auto=format&amp;fit=crop&amp;w=1600&amp;q=80");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-size: cover;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-position: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 120px 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>header h1 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 48px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>header p {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 600px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 auto 30px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #dddddd;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: inline-block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #ffffff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 14px 26px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 30px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: bold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>section {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 60px 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 1100px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>h2 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 40px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 32px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.services {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.service {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #181818;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 25px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 15px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.service h3 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.service span {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #aaa;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.gallery {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 15px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.gallery img {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 15px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>height: 250px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>object-fit: cover;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.contact {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #181818;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 40px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.contact p {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #ccc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>footer {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 30px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #777;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- HERO --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;header&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Northside Cuts&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;Clean fades. Sharp lineups. Built for walk-ins and appointments.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;a href="#contact" class="btn"&gt;Book Now&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;a href="#services" class="btn"&gt;View Services&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- SERVICES --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;section id="services"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Services&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="services"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="service"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Fade + Lineup&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span&gt;$35 · 40 min&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="service"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Classic Cut&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span&gt;$30 · 30 min&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="service"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Cut + Beard&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span&gt;$45 · 55 min&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="service"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Beard Trim&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span&gt;$20 · 20 min&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- GALLERY --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;section&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Our Work&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="gallery"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://images.unsplash.com/photo-1621605810052-809ad5c91f6d?auto=format&amp;fit=crop&amp;w=800&amp;q=80" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://images.unsplash.com/photo-1595475884562-073c30d45670?auto=format&amp;fit=crop&amp;w=800&amp;q=80" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://images.unsplash.com/photo-1622296089865-1a7b1f3f4a2f?auto=format&amp;fit=crop&amp;w=800&amp;q=80" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&amp;fit=crop&amp;w=800&amp;q=80" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://images.unsplash.com/photo-1620842751246-e2b3a6f62e8a?auto=format&amp;fit=crop&amp;w=800&amp;q=80" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&amp;fit=crop&amp;w=800&amp;q=80" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- CONTACT --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;section id="contact"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="contact"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Book Your Cut&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;Walk-ins welcome or book ahead to lock your spot.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;📍 123 Main Street, Your City&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;p&gt;📞 (555) 123-4567&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;a href="#" class="btn"&gt;Book Appointment&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>© 2026 Northside Cuts · Demo Website</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+<p class="p3"><span class="s1"><b></b></span><br></p>
 </body>
 </html>
