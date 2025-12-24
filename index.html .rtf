@@ -1,0 +1,393 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!doctype html>\
+<html lang="en">\
+<head>\
+  <meta charset="utf-8" />\
+  <meta name="viewport" content="width=device-width,initial-scale=1" />\
+  <title>Northside Cuts \'97 Barber Studio</title>\
+  <meta name="description" content="Modern barbershop demo site: services, pricing, hours, location, gallery, and booking." />\
+  <style>\
+    :root\{\
+      --bg:#0b0c10; --card:#111218; --text:#f5f7ff; --muted:#b7bdd6;\
+      --line:rgba(255,255,255,.10); --shadow: 0 18px 40px rgba(0,0,0,.35);\
+      --radius:18px; --radius2:28px; --max:1080px;\
+    \}\
+    *\{box-sizing:border-box\}\
+    body\{\
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;\
+      color:var(--text); background:\
+        radial-gradient(900px 500px at 20% -10%, rgba(255,255,255,.10), transparent 55%),\
+        radial-gradient(900px 500px at 90% 10%, rgba(255,255,255,.06), transparent 55%),\
+        var(--bg);\
+      line-height:1.5;\
+    \}\
+    a\{color:inherit; text-decoration:none\}\
+    .wrap\{max-width:var(--max); margin:0 auto; padding:20px\}\
+    .nav\{\
+      position:sticky; top:0; z-index:20;\
+      backdrop-filter: blur(10px);\
+      background: rgba(11,12,16,.65);\
+      border-bottom:1px solid var(--line);\
+    \}\
+    .nav .inner\{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 20px; max-width:var(--max); margin:0 auto;\}\
+    .brand\{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.4px\}\
+    .logo\{\
+      width:34px; height:34px; border-radius:12px;\
+      background: linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.06));\
+      border:1px solid var(--line);\
+      display:grid; place-items:center;\
+      box-shadow: var(--shadow);\
+    \}\
+    .navlinks\{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end\}\
+    .navlinks a\{color:var(--muted); font-weight:600; font-size:14px; padding:8px 10px; border-radius:12px\}\
+    .navlinks a:hover\{background:rgba(255,255,255,.06); color:var(--text)\}\
+    .btn\{\
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;\
+      padding:12px 16px; border-radius:14px; border:1px solid var(--line);\
+      background:rgba(255,255,255,.06);\
+      font-weight:800;\
+    \}\
+    .btn:hover\{background:rgba(255,255,255,.10)\}\
+    .btn.primary\{\
+      background:linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.06));\
+      box-shadow: var(--shadow);\
+    \}\
+    .hero\{padding:42px 20px 10px\}\
+    .heroGrid\{display:grid; grid-template-columns: 1.05fr .95fr; gap:18px; align-items:stretch\}\
+    @media (max-width: 900px)\{.heroGrid\{grid-template-columns:1fr\}\}\
+    .card\{\
+      background: rgba(255,255,255,.04);\
+      border:1px solid var(--line);\
+      border-radius: var(--radius2);\
+      box-shadow: var(--shadow);\
+    \}\
+    .pad\{padding:22px\}\
+    h1\{margin:0 0 10px; font-size:46px; letter-spacing:-.6px; line-height:1.08\}\
+    @media (max-width: 520px)\{h1\{font-size:38px\}\}\
+    .sub\{color:var(--muted); font-size:16px; margin:0 0 18px\}\
+    .chips\{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 6px\}\
+    .chip\{\
+      padding:8px 10px; border-radius:999px; border:1px solid var(--line);\
+      background: rgba(255,255,255,.05);\
+      color:var(--muted); font-weight:700; font-size:13px;\
+    \}\
+    .ctaRow\{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px\}\
+    .ctaRow .btn\{flex:0 0 auto\}\
+    .note\{font-size:12px; color:var(--muted); margin-top:12px\}\
+    .photo\{\
+      border-radius: var(--radius2);\
+      overflow:hidden;\
+      min-height: 340px;\
+      position:relative;\
+      background:\
+        radial-gradient(900px 500px at 30% 20%, rgba(255,255,255,.16), transparent 60%),\
+        linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02));\
+    \}\
+    .photo::after\{\
+      content:"DEMO PHOTO AREA";\
+      position:absolute; inset:auto 18px 18px 18px;\
+      padding:10px 12px; border-radius:14px;\
+      border:1px dashed rgba(255,255,255,.18);\
+      color: rgba(255,255,255,.55);\
+      font-weight:900; letter-spacing:.6px; font-size:12px;\
+      background: rgba(0,0,0,.18);\
+    \}\
+    .stats\{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px\}\
+    @media (max-width: 520px)\{.stats\{grid-template-columns:1fr\}\}\
+    .stat\{\
+      padding:14px; border-radius: var(--radius);\
+      border:1px solid var(--line); background: rgba(255,255,255,.04);\
+    \}\
+    .stat b\{display:block; font-size:18px\}\
+    .stat span\{color:var(--muted); font-weight:700; font-size:12px\}\
+    section\{padding:18px 20px\}\
+    .sectionTitle\{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:10px\}\
+    h2\{margin:0; font-size:22px; letter-spacing:-.2px\}\
+    .small\{color:var(--muted); font-size:13px; font-weight:700\}\
+    .grid3\{display:grid; grid-template-columns: repeat(3,1fr); gap:12px\}\
+    @media (max-width: 900px)\{.grid3\{grid-template-columns:1fr\}\}\
+    .service\{padding:16px; border-radius: var(--radius); border:1px solid var(--line); background: rgba(255,255,255,.04)\}\
+    .service .top\{display:flex; justify-content:space-between; align-items:center; gap:10px\}\
+    .service .price\{font-weight:900\}\
+    .service p\{margin:8px 0 0; color:var(--muted); font-weight:600; font-size:13px\}\
+    .twoCol\{display:grid; grid-template-columns: 1fr 1fr; gap:12px\}\
+    @media (max-width: 900px)\{.twoCol\{grid-template-columns:1fr\}\}\
+    .list\{margin:10px 0 0; padding:0; list-style:none\}\
+    .list li\{padding:10px 0; border-top:1px solid var(--line); color:var(--muted); font-weight:700\}\
+    .list li:first-child\{border-top:none\}\
+    .gallery\{display:grid; grid-template-columns:repeat(3,1fr); gap:10px\}\
+    @media (max-width: 900px)\{.gallery\{grid-template-columns:1fr 1fr\}\}\
+    @media (max-width: 520px)\{.gallery\{grid-template-columns:1fr\}\}\
+    .tile\{\
+      border-radius: var(--radius);\
+      border:1px solid var(--line);\
+      background:\
+        radial-gradient(700px 400px at 30% 20%, rgba(255,255,255,.12), transparent 60%),\
+        rgba(255,255,255,.03);\
+      min-height: 140px;\
+      position:relative;\
+      overflow:hidden;\
+    \}\
+    .tile span\{\
+      position:absolute; left:12px; bottom:12px;\
+      color: rgba(255,255,255,.60);\
+      font-weight:900; font-size:12px; letter-spacing:.4px;\
+      background: rgba(0,0,0,.20);\
+      border:1px solid rgba(255,255,255,.10);\
+      padding:6px 8px; border-radius: 12px;\
+    \}\
+    .contactGrid\{display:grid; grid-template-columns: 1fr 1fr; gap:12px\}\
+    @media (max-width: 900px)\{.contactGrid\{grid-template-columns:1fr\}\}\
+    .field\{display:flex; flex-direction:column; gap:6px; margin-top:10px\}\
+    label\{font-size:12px; color:var(--muted); font-weight:800\}\
+    input, textarea\{\
+      background: rgba(255,255,255,.04);\
+      border:1px solid var(--line);\
+      border-radius: 14px;\
+      color:var(--text);\
+      padding:12px 12px;\
+      font: inherit;\
+      outline:none;\
+    \}\
+    textarea\{min-height:110px; resize:vertical\}\
+    .footer\{padding:28px 20px; color:var(--muted); font-weight:700; font-size:13px\}\
+    .pillRow\{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px\}\
+    .pill\{padding:10px 12px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.04)\}\
+    .warning\{color:rgba(255,255,255,.72); font-weight:800\}\
+  </style>\
+</head>\
+\
+<body>\
+  <div class="nav">\
+    <div class="inner">\
+      <div class="brand">\
+        <div class="logo">\uc0\u9986 \u65039 </div>\
+        <div>\
+          <div>Northside Cuts</div>\
+          <div class="small">Barber Studio</div>\
+        </div>\
+      </div>\
+\
+      <div class="navlinks">\
+        <a href="#services">Services</a>\
+        <a href="#hours">Hours</a>\
+        <a href="#gallery">Gallery</a>\
+        <a href="#contact">Contact</a>\
+        <a class="btn primary" href="#contact">Book</a>\
+      </div>\
+    </div>\
+  </div>\
+\
+  <div class="wrap hero">\
+    <div class="heroGrid">\
+      <div class="card pad">\
+        <h1>Clean fades.<br/>Sharp lineups.<br/>No wasted time.</h1>\
+        <p class="sub">\
+          Demo barbershop website \'97 built to show clients your brand, pricing, photos, and an easy way to book.\
+        </p>\
+\
+        <div class="chips">\
+          <div class="chip">Same-day appointments</div>\
+          <div class="chip">Walk-ins welcome</div>\
+          <div class="chip">Text to book</div>\
+          <div class="chip">5\uc0\u9733  local service</div>\
+        </div>\
+\
+        <div class="ctaRow">\
+          <a class="btn primary" href="#contact">Book an appointment</a>\
+          <a class="btn" href="#services">View services</a>\
+        </div>\
+\
+        <div class="stats">\
+          <div class="stat"><b>10\'9615 min</b><span>Typical wait time</span></div>\
+          <div class="stat"><b>4.9 \uc0\u9733 </b><span>Average rating</span></div>\
+          <div class="stat"><b>Since 2017</b><span>Serving the city</span></div>\
+        </div>\
+\
+        <p class="note">\
+          <span class="warning">Demo note:</span> Replace the business name, prices, photos, address, and booking link before sending.\
+        </p>\
+      </div>\
+\
+      <div class="card photo" aria-label="Demo hero image placeholder"></div>\
+    </div>\
+  </div>\
+\
+  <div class="wrap">\
+    <section id="services">\
+      <div class="sectionTitle">\
+        <h2>Services & Pricing</h2>\
+        <div class="small">Simple menu \'95 clear pricing \'95 easy upsells</div>\
+      </div>\
+\
+      <div class="grid3">\
+        <div class="service">\
+          <div class="top"><b>Fade + Lineup</b><div class="price">$35</div></div>\
+          <p>Skin / mid / low fade. Crisp lineup. Finished with hot towel.</p>\
+        </div>\
+        <div class="service">\
+          <div class="top"><b>Classic Cut</b><div class="price">$30</div></div>\
+          <p>Scissor + clipper blend. Natural finish. Great for professionals.</p>\
+        </div>\
+        <div class="service">\
+          <div class="top"><b>Cut + Beard</b><div class="price">$45</div></div>\
+          <p>Full cut plus beard shape-up, detailing, and optional hot towel.</p>\
+        </div>\
+        <div class="service">\
+          <div class="top"><b>Kids Cut (12 & under)</b><div class="price">$25</div></div>\
+          <p>Patient, clean, and quick. Bring a reference photo if you want.</p>\
+        </div>\
+        <div class="service">\
+          <div class="top"><b>Beard Shape-Up</b><div class="price">$20</div></div>\
+          <p>Lineup + trim + balm finish. Adds a sharp look fast.</p>\
+        </div>\
+        <div class="service">\
+          <div class="top"><b>House Call</b><div class="price">$80+</div></div>\
+          <p>Travel fee depends on distance. Great for groups or events.</p>\
+        </div>\
+      </div>\
+    </section>\
+\
+    <section id="hours">\
+      <div class="twoCol">\
+        <div class="card pad">\
+          <div class="sectionTitle">\
+            <h2>Hours</h2>\
+            <div class="small">Example schedule</div>\
+          </div>\
+          <ul class="list">\
+            <li>Mon\'96Thu: 10:00 AM \'96 7:00 PM</li>\
+            <li>Fri: 10:00 AM \'96 8:00 PM</li>\
+            <li>Sat: 9:00 AM \'96 6:00 PM</li>\
+            <li>Sun: Closed</li>\
+          </ul>\
+          <div class="pillRow">\
+            <div class="pill">Walk-ins: \uc0\u9989 </div>\
+            <div class="pill">Appointments: \uc0\u9989 </div>\
+            <div class="pill">Cash / Card: \uc0\u9989 </div>\
+          </div>\
+        </div>\
+\
+        <div class="card pad">\
+          <div class="sectionTitle">\
+            <h2>Location</h2>\
+            <div class="small">Replace with real address</div>\
+          </div>\
+          <p class="sub" style="margin-top:8px">\
+            123 Main Street, Suite B<br/>\
+            Your City, ST 00000\
+          </p>\
+          <div class="pillRow">\
+            <a class="btn" href="https://www.google.com/maps" target="_blank" rel="noopener">Open in Maps</a>\
+            <a class="btn" href="tel:+15551234567">Call (555) 123-4567</a>\
+          </div>\
+          <p class="note">Tip: a good website + Google Business profile = more bookings.</p>\
+        </div>\
+      </div>\
+    </section>\
+\
+    <section id="gallery">\
+      <div class="sectionTitle">\
+        <h2>Gallery</h2>\
+        <div class="small">Swap these tiles with real haircut photos</div>\
+      </div>\
+      <div class="gallery">\
+        <div class="tile"><span>Fade</span></div>\
+        <div class="tile"><span>Lineup</span></div>\
+        <div class="tile"><span>Beard</span></div>\
+        <div class="tile"><span>Texture</span></div>\
+        <div class="tile"><span>Kids</span></div>\
+        <div class="tile"><span>Before/After</span></div>\
+      </div>\
+    </section>\
+\
+    <section id="contact">\
+      <div class="contactGrid">\
+        <div class="card pad">\
+          <div class="sectionTitle">\
+            <h2>Book / Contact</h2>\
+            <div class="small">Fast booking = more revenue</div>\
+          </div>\
+\
+          <p class="sub" style="margin-top:8px">\
+            Want this exact site built for your shop? Tap below to book or send a message.\
+          </p>\
+\
+          <div class="pillRow">\
+            <!-- Replace with real booking link (Booksy, Square, Calendly, etc.) -->\
+            <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noopener">Book Now</a>\
+            <a class="btn" href="sms:+15551234567">Text Us</a>\
+            <a class="btn" href="mailto:book@northsidecuts.demo">Email</a>\
+          </div>\
+\
+          <p class="note">\
+            Demo booking button goes to Calendly. Replace with Booksy/Square link if the barber uses one.\
+          </p>\
+        </div>\
+\
+        <div class="card pad">\
+          <div class="sectionTitle">\
+            <h2>Quick Message</h2>\
+            <div class="small">Demo form (no backend)</div>\
+          </div>\
+\
+          <form onsubmit="return handleSubmit(event)">\
+            <div class="field">\
+              <label for="name">Name</label>\
+              <input id="name" name="name" placeholder="Your name" required />\
+            </div>\
+            <div class="field">\
+              <label for="phone">Phone</label>\
+              <input id="phone" name="phone" placeholder="(555) 123-4567" />\
+            </div>\
+            <div class="field">\
+              <label for="msg">Message</label>\
+              <textarea id="msg" name="msg" placeholder="What service do you want? Preferred day/time?"></textarea>\
+            </div>\
+            <div class="ctaRow" style="margin-top:14px">\
+              <button class="btn primary" type="submit">Send Message</button>\
+              <a class="btn" href="#services">View Pricing</a>\
+            </div>\
+          </form>\
+\
+          <p class="note" id="formNote">This demo form opens your email app. No data is stored.</p>\
+        </div>\
+      </div>\
+    </section>\
+\
+    <div class="footer">\
+      \'a9 <span id="yr"></span> Northside Cuts \'97 Demo website. Built for marketing examples.\
+    </div>\
+  </div>\
+\
+  <script>\
+    document.getElementById("yr").textContent = new Date().getFullYear();\
+\
+    function handleSubmit(e)\{\
+      e.preventDefault();\
+      const name = document.getElementById("name").value.trim();\
+      const phone = document.getElementById("phone").value.trim();\
+      const msg = document.getElementById("msg").value.trim();\
+\
+      const subject = encodeURIComponent("Booking Request \'97 Northside Cuts");\
+      const body = encodeURIComponent(\
+        `Name: $\{name\}\\nPhone: $\{phone\}\\n\\nMessage:\\n$\{msg\}\\n\\n(Submitted from demo website)`\
+      );\
+\
+      // Replace with the barber's real email:\
+      const to = "book@northsidecuts.demo";\
+\
+      window.location.href = `mailto:$\{to\}?subject=$\{subject\}&body=$\{body\}`;\
+      document.getElementById("formNote").textContent = "Opening your email app\'85";\
+      return false;\
+    \}\
+  </script>\
+</body>\
+</html>\
+}
